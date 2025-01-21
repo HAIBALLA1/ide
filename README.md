@@ -1,5 +1,5 @@
 # Judge0 IDE
-[![Judge0 IDE Screenshot](https://github.com/judge0/ide/blob/master/.github/screenshot.png?raw=true)](https://ide.judge0.com/?7U55)
+[![Judge0 IDE Screenshot](./.github/screenshot.png)](https://ide.judge0.com)
 
 [![License](https://img.shields.io/github/license/judge0/ide?color=2185d0&style=flat-square)](https://github.com/judge0/ide/blob/master/LICENSE)
 [![Release](https://img.shields.io/github/v/release/judge0/ide?color=2185d0&style=flat-square)](https://github.com/judge0/ide/releases)
