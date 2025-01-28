@@ -1,20 +1,15 @@
-:root {
-    --judge0-blue: #2B3A8F;
-    --judge0-cyan: #00BDD2;
-    --judge0-pink: #ED2079;
-    --judge0-violet: #5F3282;
-}
-
 html, body {
     height: 100%;
     margin: 0;
     min-height: 100%;
     padding: 0;
+    background-color: #1b1c1d !important; /* Color from Semantic UI */
+    background: url("../images/logo_black.svg") no-repeat center center;
+    background-size: 33%;
 }
 
-.judge0-gradient {
-    background: var(--judge0-cyan) !important;
-    background: linear-gradient(45deg, var(--judge0-cyan) 0%, var(--judge0-blue) 40%, var(--judge0-violet) 70%, var(--judge0-pink) 100%) !important;
+#site-navigation, #site-footer {
+    border-radius: 0;
 }
 
 #site-header {
@@ -24,6 +19,11 @@ html, body {
 
 #site-logo {
     width: 5rem;
+}
+
+#run-btn {
+    background: url("../images/button.png") no-repeat !important;
+    background-size: cover !important;
 }
 
 #site-footer, .lm_tab {
