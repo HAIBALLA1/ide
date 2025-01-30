@@ -35,25 +35,29 @@ function setThemeProperties(isLightMode) {
     });
 }
 
-function setLightMode() {
+function setLightMode(saveToLocalStorage = false) {
     setThemeProperties(true);
-    localStorageSetItem("JUDGE0_THEME_MODE", "light");
+    if (saveToLocalStorage) {
+        localStorageSetItem("JUDGE0_THEME_MODE", "light");
+    }
 }
 
-function setDarkMode() {
+function setDarkMode(saveToLocalStorage = false) {
     setThemeProperties(false);
-    localStorageSetItem("JUDGE0_THEME_MODE", "dark");
+    if (saveToLocalStorage) {
+        localStorageSetItem("JUDGE0_THEME_MODE", "dark");
+    }
 }
 
 function getThemeMode() {
-    return localStorageGetItem("JUDGE0_THEME_MODE") || "light";
+    return localStorageGetItem("JUDGE0_THEME_MODE") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
 }
 
 function toggleThemeMode() {
     if (getThemeMode() === "dark") {
-        setLightMode();
+        setLightMode(true);
     } else {
-        setDarkMode();
+        setDarkMode(true);
     }
 }
 
@@ -69,4 +73,12 @@ document.addEventListener("DOMContentLoaded", function () {
     require(["vs/editor/editor.main"], function (ignorable) {
         setThemeMode(getThemeMode());
     });
+});
+
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+    if (e.matches) {
+        setDarkMode();
+    } else {
+        setLightMode();
+    }
 });
