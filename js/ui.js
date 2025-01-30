@@ -75,7 +75,9 @@ function toggleThemeMode() {
 
 document.addEventListener("DOMContentLoaded", function () {
     require(["vs/editor/editor.main"], function (ignorable) {
-        setThemeMode(getThemeMode());
+        const queryThemeMode = getQueryVariable("theme");
+        const supportedThemeModes = ["dark", "light", "system"];
+        setThemeMode(supportedThemeModes.includes(queryThemeMode) ? queryThemeMode : getThemeMode(), true);
     });
 });
 

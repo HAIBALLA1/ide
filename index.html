@@ -34,6 +34,8 @@
 
     <script type="text/javascript" src="js/ide.js"></script>
     <script type="text/javascript" src="js/local_storage.js"></script>
+    <script type="text/javascript" src="js/query.js"></script>
+    <script type="text/javascript" src="js/style.js"></script>
     <script type="text/javascript" src="js/ui.js"></script>
     <link type="text/css" rel="stylesheet" href="css/ide.css">
 
@@ -67,7 +69,7 @@
 
 <body>
     <div id="site-navigation" class="ui top attached inverted borderless mini menu">
-        <a href="https://judge0.com" target="_blank" id="site-header" class="header item judge0-puter-hidden">
+        <a href="https://judge0.com" target="_blank" id="site-header" class="header item judge0-hidden-for-minimal-style">
             <img id="site-logo-white" class="site-logo" src="./images/logo_white.svg" />
             <img id="site-logo-black" class="site-logo" src="./images/logo_black.svg" />
         </a>
@@ -112,18 +114,15 @@
             <div id="judge0-theme-toggle-btn" class="icon link item" onclick="toggleThemeMode()" data-content="">
                 <i id="judge0-theme-toggle-btn-icon" class="sun icon"></i>
             </div>
-            <a class="icon item" href="https://platform.sulu.sh/apis/judge0" target="_blank" data-content="API Docs">
+            <a class="icon item judge0-hidden-for-minimal-style" href="https://platform.sulu.sh/apis/judge0" target="_blank" data-content="API Docs">
                 <i class="book icon"></i>
             </a>
-            <a class="icon item" href="https://github.com/judge0/ide/tree/master/embed" target="_blank" data-content="Embed">
+            <a class="icon item judge0-hidden-for-minimal-style" href="https://github.com/judge0/ide/tree/master/embed" target="_blank" data-content="Embed">
                 <i class="code icon"></i>
             </a>
-            <a class="icon item" href="https://github.com/judge0/ide" target="_blank" data-content="GitHub Repository">
+            <a class="icon item judge0-hidden-for-minimal-style" href="https://github.com/judge0/ide" target="_blank" data-content="GitHub Repository">
                 <i class="github icon"></i>
             </a>
-            <!-- <a class="icon item judge0-puter-visible" onclick="puter.exit()">
-                <i class="close icon"></i>
-            </a> -->
         </div>
     </div>
 
@@ -147,9 +146,9 @@
     </div>
 
     <div id="site-footer" class="ui bottom attached inverted borderless mini menu">
-        <a href="PRIVACY.md" class="link item judge0-puter-hidden" target="_blank"><i class="external square alternate icon"></i>Privacy Policy</a>
-        <a href="TERMS.md" class="link item judge0-puter-hidden" target="_blank"><i class="external square alternate icon"></i>Terms of Service</a>
-        <a href="https://judge0.com" class="link item judge0-puter-hidden" target="_blank"><i class="copyright outline icon"></i>2016-2025 Judge0 d.o.o. – All Rights Reserved.</a>
+        <a href="PRIVACY.md" class="link item judge0-hidden-for-minimal-style" target="_blank"><i class="external square alternate icon"></i>Privacy Policy</a>
+        <a href="TERMS.md" class="link item judge0-hidden-for-minimal-style" target="_blank"><i class="external square alternate icon"></i>Terms of Service</a>
+        <a href="https://judge0.com" class="link item judge0-hidden-for-minimal-style" target="_blank"><i class="copyright outline icon"></i>2016-2025 Judge0 d.o.o. – All Rights Reserved.</a>
         <div class="right menu">
             <div id="status-line" class="item"></div>
         </div>
