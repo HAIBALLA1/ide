@@ -40,3 +40,7 @@ html, body {
 .lm_tab {
     box-shadow: none !important;
 }
+
+.judge0-puter-visible {
+    display: none !important;
+}
