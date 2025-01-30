@@ -1,4 +1,7 @@
-function setThemeProperties(isLightMode) {
+function setThemeMode(themeMode, saveToLocalStorage = false) {
+    const actualThemeMode = themeMode === "system" ? getSystemTheme() : themeMode;
+    const isLightMode = actualThemeMode === "light";
+
     document.body.style.background = `url("./images/logo_${isLightMode ? "white" : "black"}.svg") center center / 33% no-repeat ${isLightMode ? "#e0e1e2" : "#1b1c1d"} `;
 
     document.getElementById("judge0-golden-layout-dark-theme-stylesheet").disabled = isLightMode;
@@ -16,14 +19,14 @@ function setThemeProperties(isLightMode) {
         }
     });
 
-    document.getElementById("judge0-theme-toggle-btn").setAttribute("data-tooltip", `Switch between dark and light mode (currently ${isLightMode ? "light" : "dark"} mode)`);
+    document.getElementById("judge0-theme-toggle-btn").setAttribute("data-tooltip", `Switch between dark, light, and system theme (currently ${themeMode} theme)`);
     const themeToggleBtnIcon = document.getElementById("judge0-theme-toggle-btn-icon");
-    if (isLightMode) {
-        themeToggleBtnIcon.classList.remove("sun");
-        themeToggleBtnIcon.classList.add("moon");
+    if (themeMode === "dark") {
+        themeToggleBtnIcon.classList = "moon icon";
+    } else if (themeMode === "light") {
+        themeToggleBtnIcon.classList = "sun icon";
     } else {
-        themeToggleBtnIcon.classList.remove("moon");
-        themeToggleBtnIcon.classList.add("sun");
+        themeToggleBtnIcon.classList = "adjust icon";
     }
 
     document.querySelectorAll("[data-tooltip]").forEach(e => {
@@ -33,39 +36,40 @@ function setThemeProperties(isLightMode) {
             e.removeAttribute("data-inverted");
         }
     });
-}
 
-function setLightMode(saveToLocalStorage = false) {
-    setThemeProperties(true);
     if (saveToLocalStorage) {
-        localStorageSetItem("JUDGE0_THEME_MODE", "light");
-    }
-}
-
-function setDarkMode(saveToLocalStorage = false) {
-    setThemeProperties(false);
-    if (saveToLocalStorage) {
-        localStorageSetItem("JUDGE0_THEME_MODE", "dark");
+        localStorageSetItem("JUDGE0_THEME_MODE", themeMode);
     }
 }
 
 function getThemeMode() {
-    return localStorageGetItem("JUDGE0_THEME_MODE") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    return localStorageGetItem("JUDGE0_THEME_MODE") || "system";
+}
+
+function getSystemTheme() {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
 }
 
 function toggleThemeMode() {
-    if (getThemeMode() === "dark") {
-        setLightMode(true);
-    } else {
-        setDarkMode(true);
-    }
-}
-
-function setThemeMode(themeMode) {
-    if (themeMode === "light") {
-        setLightMode();
-    } else {
-        setDarkMode();
+    const currentThemeMode = getThemeMode();
+    if (currentThemeMode === "system") {
+        if (getSystemTheme() === "dark") {
+            setThemeMode("light", true);
+        } else {
+            setThemeMode("dark", true);
+        }
+    } else if (currentThemeMode === "dark") {
+        if (getSystemTheme() === "dark") {
+            setThemeMode("system", true);
+        } else {
+            setThemeMode("light", true);
+        }
+    } else if (currentThemeMode === "light") {
+        if (getSystemTheme() === "light") {
+            setThemeMode("system", true);
+        } else {
+            setThemeMode("dark", true);
+        }
     }
 }
 
@@ -76,9 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-    if (e.matches) {
-        setDarkMode();
-    } else {
-        setLightMode();
+    if (getThemeMode() === "system") {
+        setThemeMode("system");
     }
 });
