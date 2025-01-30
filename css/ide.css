@@ -24,6 +24,10 @@ html, body {
     display: none;
 }
 
+#judge0-file-menu {
+    width: 15rem;
+}
+
 #run-btn {
     background: url("../images/button.png") no-repeat !important;
     background-size: cover !important;
@@ -35,8 +39,4 @@ html, body {
 
 .lm_tab {
     box-shadow: none !important;
-}
-
-#judge0-file-menu {
-    width: 15rem;
 }
