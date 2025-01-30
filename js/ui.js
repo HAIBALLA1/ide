@@ -19,7 +19,7 @@ function setThemeMode(themeMode, saveToLocalStorage = false) {
         }
     });
 
-    document.getElementById("judge0-theme-toggle-btn").setAttribute("data-tooltip", `Switch between dark, light, and system theme (currently ${themeMode} theme)`);
+    document.getElementById("judge0-theme-toggle-btn").setAttribute("data-content", `Switch between dark, light, and system theme (currently ${themeMode} theme)`);
     const themeToggleBtnIcon = document.getElementById("judge0-theme-toggle-btn-icon");
     if (themeMode === "dark") {
         themeToggleBtnIcon.classList = "moon icon";
@@ -29,11 +29,11 @@ function setThemeMode(themeMode, saveToLocalStorage = false) {
         themeToggleBtnIcon.classList = "adjust icon";
     }
 
-    document.querySelectorAll("[data-tooltip]").forEach(e => {
+    document.querySelectorAll("[data-content]").forEach(e => {
         if (isLightMode) {
-            e.setAttribute("data-inverted", "");
+            e.setAttribute("data-variation", "very wide");
         } else {
-            e.removeAttribute("data-inverted");
+            e.setAttribute("data-variation", "inverted very wide");
         }
     });
 

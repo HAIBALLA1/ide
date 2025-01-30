@@ -13,7 +13,7 @@ html, body {
 
 #site-header {
     padding-left: 2.5rem;
-    padding-right: 2.5rem;
+    padding-right: calc(2.5rem - 1.14285714em);
 }
 
 .site-logo {
@@ -35,4 +35,8 @@ html, body {
 
 .lm_tab {
     box-shadow: none !important;
+}
+
+#judge0-file-menu {
+    width: 15rem;
 }
