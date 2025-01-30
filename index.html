@@ -17,8 +17,9 @@
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/golden-layout/1.5.9/goldenlayout.min.js" integrity="sha256-NhJAZDfGgv4PiB+GVlSrPdh3uc75XXYSM4su8hgTchI=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/golden-layout/1.5.9/css/goldenlayout-base.css" integrity="sha256-oIDR18yKFZtfjCJfDsJYpTBv1S9QmxYopeqw2dO96xM=" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/golden-layout/1.5.9/css/goldenlayout-dark-theme.css" integrity="sha256-ygw8PvSDJJUGLf6Q9KIQsYR3mOmiQNlDaxMLDOx9xL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/golden-layout/1.5.9/css/goldenlayout-base.css" integrity="sha512-rGtzJyDE8egZ/OScuBNLW1EIhRydcfrZo14oTvZwRLzEZu+s8foCtwi0XhXsKnhuoQAwJ7POFARWdU4fBL7FbQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link id="judge0-golden-layout-light-theme-stylesheet" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/golden-layout/1.5.9/css/goldenlayout-light-theme.css" integrity="sha512-/S3N+v8cRHW2GJvM3v9FGHAKOhNgws+V1dYZb1fBxRd9XIwpqZFZB0jug+2HHf64eURsJLqVzCVn92pQTFHHow==" crossorigin="anonymous" referrerpolicy="no-referrer" disabled />
+    <link id="judge0-golden-layout-dark-theme-stylesheet" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/golden-layout/1.5.9/css/goldenlayout-dark-theme.css" integrity="sha512-XfcBrEH69BhsZ0XpvPyzOLgikhAvIG6Znbi6yKi1Jh1iYaOXSXvljWFerhcUl5LYLCuV61KhfCydQ1+MNxnilg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <script src="./vendor/monaco-editor-0.44.0/min/vs/loader.js"></script>
     <script src="./vendor/monaco-editor-0.44.0/min/vs/editor/editor.main.nls.js"></script>
@@ -32,6 +33,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js" integrity="sha512-Xo0Jh8MsOn72LGV8kU5LsclG7SUzJsWGhXbWcYs2MAmChkQzwiW/yTQwdJ8w6UA9C6EVG18GHb/TrYpYCjyAQw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script type="text/javascript" src="js/ide.js"></script>
+    <script type="text/javascript" src="js/local_storage.js"></script>
+    <script type="text/javascript" src="js/ui.js"></script>
     <link type="text/css" rel="stylesheet" href="css/ide.css">
 
     <title>Judge0 IDE - Free and open-source online code editor.</title>
@@ -64,7 +67,10 @@
 
 <body>
     <div id="site-navigation" class="ui top attached inverted borderless tiny menu">
-        <a href="https://judge0.com" target="_blank" id="site-header" class="header link item"><img id="site-logo" src="./images/logo_white.svg"/></a>
+        <a href="https://judge0.com" target="_blank" id="site-header" class="header link item">
+            <img id="site-logo-white" class="site-logo" src="./images/logo_white.svg" />
+            <img id="site-logo-black" class="site-logo" src="./images/logo_black.svg" />
+        </a>
         <div class="item fitted">
             <div class="ui input">
                 <select id="select-language" class="ui dropdown"></select>
@@ -91,15 +97,26 @@
             <button id="save-btn" class="ui labeled icon button" data-inverted="" data-tooltip="+S" data-position="bottom center"><i class="save icon"></i>Save File</button>
         </div>
         <div class="right menu">
-            <a class="ui icon link item" href="https://platform.sulu.sh/apis/judge0" target="_blank" data-inverted="" data-tooltip="API Docs" data-position="left center">
-                <i class="book icon"></i>
-            </a>
-            <a class="ui icon link item" href="https://github.com/judge0/ide/tree/master/embed" target="_blank" data-inverted="" data-tooltip="Embed" data-position="left center">
-                <i class="code icon"></i>
-            </a>
-            <a class="ui icon link item" href="https://github.com/judge0/ide" target="_blank" data-inverted="" data-tooltip="GitHub Repo" data-position="left center">
-                <i class="github icon"></i>
-            </a>
+            <div class="item fitted">
+                <div id="judge0-theme-toggle-btn" class="ui icon button" onclick="toggleThemeMode()" data-inverted="" data-tooltip="" data-position="left center">
+                    <i id="judge0-theme-toggle-btn-icon" class="sun icon"></i>
+                </div>
+            </div>
+            <div class="item">
+                <a class="ui icon button" href="https://platform.sulu.sh/apis/judge0" target="_blank" data-inverted="" data-tooltip="API Docs" data-position="left center">
+                    <i class="book icon"></i>
+                </a>
+            </div>
+            <div class="item fitted">
+                <a class="ui icon button" href="https://github.com/judge0/ide/tree/master/embed" target="_blank" data-inverted="" data-tooltip="Embed" data-position="left center">
+                    <i class="code icon"></i>
+                </a>
+            </div>
+            <div class="item">
+                <a class="ui icon button" href="https://github.com/judge0/ide" target="_blank" data-inverted="" data-tooltip="GitHub Repo" data-position="left center">
+                    <i class="github icon"></i>
+                </a>
+            </div>
         </div>
     </div>
 

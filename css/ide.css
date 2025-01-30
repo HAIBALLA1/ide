@@ -3,13 +3,12 @@ html, body {
     margin: 0;
     min-height: 100%;
     padding: 0;
-    background-color: #1b1c1d !important; /* Color from Semantic UI */
-    background: url("../images/logo_black.svg") no-repeat center center;
-    background-size: 33%;
+    background: url("../images/logo_black.svg") center center / 33% no-repeat #1b1c1d; /* Color from Semantic UI */
 }
 
 #site-navigation, #site-footer {
     border-radius: 0;
+    border: none;
 }
 
 #site-header {
@@ -17,8 +16,12 @@ html, body {
     padding-right: 2.5rem;
 }
 
-#site-logo {
-    width: 5rem;
+.site-logo {
+    width: 5rem !important;
+}
+
+#site-logo-black {
+    display: none;
 }
 
 #run-btn {
