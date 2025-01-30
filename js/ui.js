@@ -46,7 +46,7 @@ function setDarkMode() {
 }
 
 function getThemeMode() {
-    return localStorageGetItem("JUDGE0_THEME_MODE") || "dark";
+    return localStorageGetItem("JUDGE0_THEME_MODE") || "light";
 }
 
 function toggleThemeMode() {
