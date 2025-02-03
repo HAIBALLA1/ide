@@ -9,13 +9,13 @@ function setThemeMode(themeMode, saveToLocalStorage = false) {
 
     monaco.editor.setTheme(isLightMode ? "vs-light" : "vs-dark");
 
-    document.querySelectorAll(".ui.menu").forEach(menu => {
+    [".ui.menu", ".ui.input"].forEach(selector => document.querySelectorAll(selector).forEach(menu => {
         if (isLightMode) {
             menu.classList.remove("inverted");
         } else {
             menu.classList.add("inverted");
         }
-    });
+    }));
 
     document.querySelectorAll(".label").forEach(menu => {
         if (isLightMode) {

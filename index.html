@@ -73,46 +73,46 @@
             <img id="judge0-logo" src="./images/icon.png" />
         </a>
         <div class="ui simple dropdown item">
-            File
+            <span class="text">File</span>
             <i class="dropdown icon"></i>
-            <div id="judge0-file-menu" class="menu">
+            <div class="menu judge0-file-menu">
                 <div class="item" onclick="openAction()">
                     <span class="description">+O</span>
-                    Open File...
+                    <span class="text">Open File...</span>
                     <input type="file" id="open-file-input" style="display: none;">
                 </div>
                 <div class="item" onclick="saveAction()">
                     <span class="description">+S</span>
-                    Save
+                    <span class="text">Save</span>
                 </div>
             </div>
         </div>
         <div class="ui simple dropdown item">
-            Help
+            <span class="text">Help</span>
             <i class="dropdown icon"></i>
-            <div class="menu">
-                <a href="PRIVACY.md" class="link item" target="_blank">Privacy Policy</a>
-                <a href="TERMS.md" class="link item" target="_blank">Terms of Service</a>
+            <div class="menu judge0-file-menu">
+                <a href="PRIVACY.md" class="link text item" target="_blank">Privacy Policy</a>
+                <a href="TERMS.md" class="link text item" target="_blank">Terms of Service</a>
             </div>
         </div>
         <div class="item">
             <div class="ui input">
-                <select id="select-language" class="ui selection dropdown"></select>
+                <select id="select-language"></select>
             </div>
         </div>
-        <div class="item fitted">
-            <div class="ui left labeled input">
-                <label class="ui label"><i class="flag fitted icon"></i></label>
+        <div class="item">
+            <div class="ui left icon transparent input">
+                <i class="flag icon"></i>
                 <input id="compiler-options" type="text" placeholder="Compiler options"></input>
             </div>
         </div>
         <div class="item">
-            <div class="ui left labeled input">
-                <label class="ui label"><i class="terminal fitted icon"></i></label>
+            <div class="ui left icon transparent input">
+                <i class="terminal icon"></i>
                 <input id="command-line-arguments" type="text" placeholder="Command line arguments"></input>
             </div>
         </div>
-        <div class="item fitted">
+        <div class="item">
             <button id="run-btn" class="ui primary labeled icon button" data-content="+↵" data-position="bottom center">
                 <i class="play icon"></i>Run Code
             </button>
