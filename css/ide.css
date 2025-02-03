@@ -6,7 +6,7 @@ html, body {
     background: url("../images/logo_black.svg") center center / 33% no-repeat #1b1c1d; /* Color from Semantic UI */
 }
 
-#site-navigation, #site-footer {
+#site-navigation {
     border-radius: 0;
     border: none;
 }
@@ -28,13 +28,12 @@ html, body {
     width: 15rem;
 }
 
-.judge0-run-btn {
-    background: url("../images/button.png") no-repeat !important;
-    background-size: cover !important;
+#judge0-status-line, .lm_tab {
+    font-family: "JetBrains Mono" !important;
 }
 
-#site-footer, .lm_tab {
-    font-family: "JetBrains Mono" !important;
+#judge0-status-line:empty {
+    display: none;
 }
 
 .lm_tab {

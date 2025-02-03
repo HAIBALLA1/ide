@@ -11,11 +11,20 @@ function setThemeMode(themeMode, saveToLocalStorage = false) {
     document.getElementById("site-logo-white").style.display = isLightMode ? "none" : "block";
 
     monaco.editor.setTheme(isLightMode ? "vs-light" : "vs-dark");
+
     document.querySelectorAll(".ui.menu").forEach(menu => {
         if (isLightMode) {
             menu.classList.remove("inverted");
         } else {
             menu.classList.add("inverted");
+        }
+    });
+
+    document.querySelectorAll(".label").forEach(menu => {
+        if (isLightMode) {
+            menu.classList.remove("black");
+        } else {
+            menu.classList.add("black");
         }
     });
 

@@ -4,14 +4,12 @@ function applyMinimalStyleMode() {
     document.querySelectorAll(".judge0-hidden-for-minimal-style").forEach(e => {
         e.classList.add("judge0-hidden");
     });
-    document.getElementById("run-btn").classList.remove("judge0-run-btn");
 }
 
 function reverseMinimalStyleMode() {
     document.querySelectorAll(".judge0-hidden-for-minimal-style").forEach(e => {
         e.classList.remove("judge0-hidden");
     });
-    document.getElementById("run-btn").classList.add("judge0-run-btn");
 }
 
 function applyDefaultStyleMode() {
