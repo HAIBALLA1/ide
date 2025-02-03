@@ -6,26 +6,23 @@ html, body {
     background: url("../images/logo_black.svg") center center / 33% no-repeat #1b1c1d; /* Color from Semantic UI */
 }
 
-#site-navigation {
+#judge0-site-navigation {
     border-radius: 0;
     border: none;
+    min-height: 3rem;
 }
 
-#site-header {
-    padding-left: 2.5rem;
-    padding-right: calc(2.5rem - 1.14285714em);
+#judge0-header {
+    border-radius: 0;
+    padding: 0;
 }
 
-.site-logo {
-    width: 5rem !important;
-}
-
-#site-logo-black {
-    display: none;
+#judge0-logo {
+    width: 3rem;
 }
 
 #judge0-file-menu {
-    width: 15rem;
+    width: 9rem;
 }
 
 #judge0-status-line, .lm_tab {

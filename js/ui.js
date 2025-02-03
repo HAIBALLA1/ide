@@ -7,9 +7,6 @@ function setThemeMode(themeMode, saveToLocalStorage = false) {
     document.getElementById("judge0-golden-layout-dark-theme-stylesheet").disabled = isLightMode;
     document.getElementById("judge0-golden-layout-light-theme-stylesheet").disabled = !isLightMode;
 
-    document.getElementById("site-logo-black").style.display = isLightMode ? "block" : "none";
-    document.getElementById("site-logo-white").style.display = isLightMode ? "none" : "block";
-
     monaco.editor.setTheme(isLightMode ? "vs-light" : "vs-dark");
 
     document.querySelectorAll(".ui.menu").forEach(menu => {
