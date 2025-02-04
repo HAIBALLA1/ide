@@ -1,10 +1,11 @@
 <body>
-    <iframe id="judge0-ide" src="https://ide.judge0.com?style=minimal&theme=light" frameborder="0" width="100%" height="600px"></iframe>
+    <p>The source code for this example is available <a href="https://github.com/judge0/ide/tree/master/embed" target="_blank">here</a>.</p>
 
-    <h4>Data From Judge0 IDE</h4>
+    <iframe id="judge0-ide" src="https://ide.judge0.com?style=minimal&theme=dark" frameborder="0" width="80%" height="300px"></iframe>
+
+    <hr />
     <button onclick="getDataFromJudge0IDE()">Get Data</button>
-
-    <pre id="judge0-ide-data-viewer"></pre>
+    <pre id="judge0-ide-data-viewer" style="padding: 1rem; background-color: #eee;"></pre>
 
     <script>
         let iframeDataViewer = document.getElementById("judge0-ide-data-viewer");
