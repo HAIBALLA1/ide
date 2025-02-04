@@ -1,32 +1,25 @@
-function applyMinimalStyleMode() {
+const SUPPORTED_STYLE_MODES = ["default", "minimal", "standalone"];
+const DEFAULT_STYLE_MODE = "default";
+
+function applyStyleMode(styleMode) {
     applyDefaultStyleMode();
 
-    document.querySelectorAll(".judge0-hidden-for-minimal-style").forEach(e => {
+    document.querySelectorAll(`.judge0-hidden-for-${styleMode}-style`).forEach(e => {
         e.classList.add("judge0-hidden");
     });
 }
 
-function reverseMinimalStyleMode() {
-    document.querySelectorAll(".judge0-hidden-for-minimal-style").forEach(e => {
+function reverseStyleMode(styleMode) {
+    document.querySelectorAll(`.judge0-hidden-for-${styleMode}-style`).forEach(e => {
         e.classList.remove("judge0-hidden");
     });
 }
 
 function applyDefaultStyleMode() {
-    reverseMinimalStyleMode();
-}
-
-function applyStyleMode(styleMode) {
-    if (styleMode === "minimal") {
-        applyMinimalStyleMode();
-    } else {
-        applyDefaultStyleMode();
-    }
+    SUPPORTED_STYLE_MODES.forEach(s => reverseStyleMode(s));
 }
 
 document.addEventListener("DOMContentLoaded", function () {
     const styleMode = getQueryVariable("style");
-    const supportedStyleModes = ["default", "minimal"];
-    const defaultStyleMode = "default";
-    applyStyleMode(supportedStyleModes.includes(styleMode) ? styleMode : defaultStyleMode);
+    applyStyleMode(SUPPORTED_STYLE_MODES.includes(styleMode) ? styleMode : DEFAULT_STYLE_MODE);
 });

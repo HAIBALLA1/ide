@@ -25,3 +25,9 @@ html, body {
 .judge0-hidden {
     display: none !important;
 }
+
+@media (display-mode: standalone) {
+    .judge0-hidden-for-standalone-style {
+      display: none !important;
+    }
+}

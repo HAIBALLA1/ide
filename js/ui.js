@@ -43,6 +43,10 @@ function setThemeMode(themeMode, saveToLocalStorage = false) {
         }
     });
 
+    document.head.querySelectorAll("meta[name='theme-color'], meta[name='msapplication-TileColor']").forEach(e => {
+        e.setAttribute("content", isLightMode ? "#ffffff" : "#1b1c1d");
+    });
+
     if (saveToLocalStorage) {
         localStorageSetItem("JUDGE0_THEME_MODE", themeMode);
     }
