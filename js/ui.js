@@ -1,4 +1,4 @@
-import { getQueryVariable } from "./query.js";
+import query from "./query.js";
 import ls from "./local_storage.js";
 
 function setThemeMode(themeMode, saveToLocalStorage = false) {
@@ -88,7 +88,7 @@ export function toggleThemeMode() {
 
 document.addEventListener("DOMContentLoaded", function () {
     require(["vs/editor/editor.main"], function (ignorable) {
-        const queryThemeMode = getQueryVariable("theme");
+        const queryThemeMode = query.get("theme");
         const supportedThemeModes = ["dark", "light", "system"];
         setThemeMode(supportedThemeModes.includes(queryThemeMode) ? queryThemeMode : getThemeMode(), true);
     });

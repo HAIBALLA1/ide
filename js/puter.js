@@ -1,8 +1,8 @@
 "use strict";
 
-import { getQueryVariable } from "./query.js";
+import query from "./query.js";
 
-export const IS_PUTER = !!getQueryVariable("puter.app_instance_id");
+export const IS_PUTER = !!query.get("puter.app_instance_id");
 
 if (IS_PUTER) {
     const script = document.createElement("script");

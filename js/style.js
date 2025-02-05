@@ -1,6 +1,6 @@
 import { IS_ELECTRON } from "./electron.js";
 import { IS_PUTER } from "./puter.js";
-import { getQueryVariable } from "./query.js";
+import query from "./query.js";
 
 const SUPPORTED_STYLE_MODES = ["default", "minimal", "standalone", "electron"];
 const DEFAULT_STYLE_MODE = "default";
@@ -24,7 +24,7 @@ function applyDefaultStyleMode() {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    const styleMode = getQueryVariable("style");
+    const styleMode = query.get("style");
     if (IS_ELECTRON) {
         applyStyleMode("electron");
     } else if (IS_PUTER) {
