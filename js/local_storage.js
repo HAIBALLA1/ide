@@ -1,5 +1,4 @@
 "use strict";
-
 const ls = {
     set(key, value) {
         try {
@@ -34,6 +33,6 @@ const ls = {
         } catch (ignorable) {
         }
     }
-}
+};
 
 export default ls;

@@ -1,5 +1,4 @@
 "use strict";
-
 const query = {
     get(variable) {
         const query = window.location.search.substring(1);
@@ -11,6 +10,6 @@ const query = {
             }
         }
     }
-}
+};
 
 export default query;

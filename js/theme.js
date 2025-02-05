@@ -1,13 +1,13 @@
 "use strict";
-
 import query from "./query.js";
 import ls from "./local_storage.js";
 
 const theme = {
     SUPPORTED_THEMES: ["light", "dark", "system", "reverse-system"],
     DEFAULT_THEME: "system",
-    set(name, save = false) {
-        const resolvedTheme = name === "system" ? theme.getSystemTheme() : (name === "reverse-system" ? theme.getReverseSystemTheme() : name);
+    set(name, save = true) {
+        const resolvedName = theme.SUPPORTED_THEMES.includes(name) ? name : theme.get();
+        const resolvedTheme = resolvedName === "system" ? theme.getSystemTheme() : (resolvedName === "reverse-system" ? theme.getReverseSystemTheme() : resolvedName);
         const isLight = resolvedTheme === "light";
 
         document.body.style.background = `url("./images/logo_${isLight ? "white" : "black"}.svg") center center / 33% no-repeat ${isLight ? "#e0e1e2" : "#1b1c1d"} `;
@@ -33,11 +33,11 @@ const theme = {
             }
         });
 
-        document.getElementById("judge0-theme-toggle-btn").setAttribute("data-content", `Switch between dark, light, and system theme (currently ${name} theme)`);
+        document.getElementById("judge0-theme-toggle-btn").setAttribute("data-content", `Switch between dark, light, and system theme (currently ${resolvedName} theme)`);
         const themeToggleBtnIcon = document.getElementById("judge0-theme-toggle-btn-icon");
-        if (name === "dark") {
+        if (resolvedName === "dark") {
             themeToggleBtnIcon.classList = "moon icon";
-        } else if (name === "light") {
+        } else if (resolvedName === "light") {
             themeToggleBtnIcon.classList = "sun icon";
         } else {
             themeToggleBtnIcon.classList = "adjust icon";
@@ -56,37 +56,37 @@ const theme = {
         });
 
         if (save) {
-            ls.set("JUDGE0_THEME_MODE", name);
+            ls.set("JUDGE0_THEME", resolvedName);
         }
     },
     get() {
-        return ls.get("JUDGE0_THEME_MODE") || "system";
+        return ls.get("JUDGE0_THEME") || theme.DEFAULT_THEME;
     },
     toggle() {
         const current = theme.get();
         if (current === "system") {
             if (theme.getSystemTheme() === "dark") {
-                theme.set("light", true);
+                theme.set("light");
             } else {
-                theme.set("dark", true);
+                theme.set("dark");
             }
         } else if (current === "reverse-system") {
             if (theme.getReverseSystemTheme() === "dark") {
-                theme.set("light", true);
+                theme.set("light");
             } else {
-                theme.set("dark", true);
+                theme.set("dark");
             }
         } else if (current === "dark") {
             if (theme.getSystemTheme() === "dark") {
-                theme.set("system", true);
+                theme.set("system");
             } else {
-                theme.set("light", true);
+                theme.set("light");
             }
         } else if (current === "light") {
             if (theme.getSystemTheme() === "light") {
-                theme.set("system", true);
+                theme.set("system");
             } else {
-                theme.set("dark", true);
+                theme.set("dark");
             }
         }
     },
@@ -102,15 +102,14 @@ export default theme;
 
 document.addEventListener("DOMContentLoaded", function () {
     require(["vs/editor/editor.main"], function () {
-        const desiredTheme = query.get("theme");
-        theme.set(theme.SUPPORTED_THEMES.includes(desiredTheme) ? desiredTheme : theme.get(), true);
+        theme.set(query.get("theme"));
     });
 });
 
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-    if (theme.get() === "system") {
-        theme.set("system");
-    } else if (theme.get() === "reverse-system") {
-        theme.set("reverse-system");
-    }
+    ["system", "reverse-system"].forEach(t => {
+        if (theme.get() === t) {
+            theme.set(t, false);
+        }
+    });
 });

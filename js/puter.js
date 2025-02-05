@@ -1,5 +1,4 @@
 "use strict";
-
 import query from "./query.js";
 
 export const IS_PUTER = !!query.get("puter.app_instance_id");

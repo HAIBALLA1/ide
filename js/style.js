@@ -1,35 +1,37 @@
+"use strict";
+import query from "./query.js";
 import { IS_ELECTRON } from "./electron.js";
 import { IS_PUTER } from "./puter.js";
-import query from "./query.js";
 
-const SUPPORTED_STYLE_MODES = ["default", "minimal", "standalone", "electron"];
-const DEFAULT_STYLE_MODE = "default";
+const style = {
+    SUPPORTED_STYLES: ["default", "minimal", "standalone", "electron"],
+    DEFAULT_STYLE: "default",
+    apply(name) {
+        const resolvedName = style.SUPPORTED_STYLES.includes(name) ? name : style.DEFAULT_STYLE;
+        if (resolvedName !== "default") {
+            style.apply("default");
+            document.querySelectorAll(`.judge0-${resolvedName}-hidden`).forEach(e => {
+                e.classList.add("judge0-hidden");
+            });
+        } else {
+            style.SUPPORTED_STYLES.forEach(s => style.reverse(s));
+        }
+    },
+    reverse(name) {
+        document.querySelectorAll(`.judge0-${name}-hidden`).forEach(e => {
+            e.classList.remove("judge0-hidden");
+        });
+    }
+};
 
-function applyStyleMode(styleMode) {
-    applyDefaultStyleMode();
-
-    document.querySelectorAll(`.judge0-${styleMode}-hidden`).forEach(e => {
-        e.classList.add("judge0-hidden");
-    });
-}
-
-function reverseStyleMode(styleMode) {
-    document.querySelectorAll(`.judge0-${styleMode}-hidden`).forEach(e => {
-        e.classList.remove("judge0-hidden");
-    });
-}
-
-function applyDefaultStyleMode() {
-    SUPPORTED_STYLE_MODES.forEach(s => reverseStyleMode(s));
-}
+export default style;
 
 document.addEventListener("DOMContentLoaded", function () {
-    const styleMode = query.get("style");
     if (IS_ELECTRON) {
-        applyStyleMode("electron");
+        style.apply("electron");
     } else if (IS_PUTER) {
-        applyStyleMode("standalone");
+        style.apply("standalone");
     } else {
-        applyStyleMode(SUPPORTED_STYLE_MODES.includes(styleMode) ? styleMode : DEFAULT_STYLE_MODE);
+        style.apply(query.get("style"));
     }
 });
