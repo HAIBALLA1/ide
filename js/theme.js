@@ -104,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
     require(["vs/editor/editor.main"], function () {
         theme.set(query.get("theme"));
     });
+    document.getElementById("judge0-theme-toggle-btn").addEventListener("click", theme.toggle);
 });
 
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
