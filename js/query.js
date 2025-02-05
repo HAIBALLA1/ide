@@ -1,4 +1,6 @@
-function getQueryVariable(variable) {
+"use strict";
+
+export function getQueryVariable(variable) {
     let query = window.location.search.substring(1);
     let vars = query.split("&");
     for (let i = 0; i < vars.length; i++) {

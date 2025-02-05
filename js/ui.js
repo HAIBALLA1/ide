@@ -1,3 +1,6 @@
+import { getQueryVariable } from "./query.js";
+import judge0LocalStorage from "./local_storage.js";
+
 function setThemeMode(themeMode, saveToLocalStorage = false) {
     const actualThemeMode = themeMode === "system" ? getSystemTheme() : themeMode;
     const isLightMode = actualThemeMode === "light";
@@ -48,19 +51,19 @@ function setThemeMode(themeMode, saveToLocalStorage = false) {
     });
 
     if (saveToLocalStorage) {
-        localStorageSetItem("JUDGE0_THEME_MODE", themeMode);
+        judge0LocalStorage.set("JUDGE0_THEME_MODE", themeMode);
     }
 }
 
 function getThemeMode() {
-    return localStorageGetItem("JUDGE0_THEME_MODE") || "system";
+    return judge0LocalStorage.get("JUDGE0_THEME_MODE") || "system";
 }
 
 function getSystemTheme() {
     return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
 }
 
-function toggleThemeMode() {
+export function toggleThemeMode() {
     const currentThemeMode = getThemeMode();
     if (currentThemeMode === "system") {
         if (getSystemTheme() === "dark") {
