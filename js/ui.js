@@ -1,5 +1,5 @@
 import { getQueryVariable } from "./query.js";
-import judge0LocalStorage from "./local_storage.js";
+import ls from "./local_storage.js";
 
 function setThemeMode(themeMode, saveToLocalStorage = false) {
     const actualThemeMode = themeMode === "system" ? getSystemTheme() : themeMode;
@@ -51,12 +51,12 @@ function setThemeMode(themeMode, saveToLocalStorage = false) {
     });
 
     if (saveToLocalStorage) {
-        judge0LocalStorage.set("JUDGE0_THEME_MODE", themeMode);
+        ls.set("JUDGE0_THEME_MODE", themeMode);
     }
 }
 
 function getThemeMode() {
-    return judge0LocalStorage.get("JUDGE0_THEME_MODE") || "system";
+    return ls.get("JUDGE0_THEME_MODE") || "system";
 }
 
 function getSystemTheme() {

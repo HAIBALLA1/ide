@@ -1,11 +1,17 @@
 "use strict";
 
-const judge0LocalStorage = {
+const ls = {
     set(key, value) {
         try {
+            if (value == null) {
+                ls.del(key);
+                return;
+            }
+
             if (typeof value === "object") {
                 value = JSON.stringify(value);
             }
+
             localStorage.setItem(key, value);
         } catch (ignorable) {
         }
@@ -22,7 +28,7 @@ const judge0LocalStorage = {
             return null;
         }
     },
-    remove(key) {
+    del(key) {
         try {
             localStorage.removeItem(key);
         } catch (ignorable) {
@@ -30,4 +36,4 @@ const judge0LocalStorage = {
     }
 }
 
-export default judge0LocalStorage;
+export default ls;
