@@ -2,19 +2,19 @@ import { IS_ELECTRON } from "./electron.js";
 import { IS_PUTER } from "./puter.js";
 import { getQueryVariable } from "./query.js";
 
-const SUPPORTED_STYLE_MODES = ["default", "minimal", "standalone", "electron", "puter"];
+const SUPPORTED_STYLE_MODES = ["default", "minimal", "standalone", "electron"];
 const DEFAULT_STYLE_MODE = "default";
 
 function applyStyleMode(styleMode) {
     applyDefaultStyleMode();
 
-    document.querySelectorAll(`.judge0-hidden-for-${styleMode}-style`).forEach(e => {
+    document.querySelectorAll(`.judge0-${styleMode}-hidden`).forEach(e => {
         e.classList.add("judge0-hidden");
     });
 }
 
 function reverseStyleMode(styleMode) {
-    document.querySelectorAll(`.judge0-hidden-for-${styleMode}-style`).forEach(e => {
+    document.querySelectorAll(`.judge0-${styleMode}-hidden`).forEach(e => {
         e.classList.remove("judge0-hidden");
     });
 }
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (IS_ELECTRON) {
         applyStyleMode("electron");
     } else if (IS_PUTER) {
-        applyStyleMode("puter");
+        applyStyleMode("standalone");
     } else {
         applyStyleMode(SUPPORTED_STYLE_MODES.includes(styleMode) ? styleMode : DEFAULT_STYLE_MODE);
     }
