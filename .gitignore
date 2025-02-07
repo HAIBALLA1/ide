@@ -1,0 +1,23 @@
+# Ignorer le fichier d'environnement contenant les clés sensibles
+.env
+
+# Ignorer le dossier des modules Node.js (si vous en utilisez)
+node_modules/
+
+# Ignorer les fichiers de log
+*.log
+
+# Ignorer les fichiers temporaires générés par les éditeurs de texte
+*.swp
+*.swo
+
+# Ignorer les fichiers système (macOS, Windows, etc.)
+.DS_Store
+Thumbs.db
+
+# Si vous générez des fichiers compilés ou un dossier de build, vous pouvez l'ignorer aussi
+build/
+dist/
+
+# Optionnel : Ignorer d'autres dossiers ou fichiers spécifiques à votre projet
+
