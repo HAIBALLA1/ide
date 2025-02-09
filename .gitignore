@@ -1,6 +1,10 @@
 # Ignorer le fichier d'environnement contenant les clés sensibles
 .env
 
+# Ignorer l'environnement virtuel (ajoutez ici le nom de votre dossier d'environnement)
+env-lsp/
+.venv/
+
 # Ignorer le dossier des modules Node.js (si vous en utilisez)
 node_modules/
 
