@@ -52,7 +52,6 @@ function connectToLanguageServer(language, wsUrl) {
 
     webSocket.onopen = () => {
         console.log(`LSP connected for ${language}`);
-        // Créez la connexion LSP avec votre méthode habituelle
         listen({
             webSocket,
             onConnection: (connection) => {
@@ -60,7 +59,6 @@ function connectToLanguageServer(language, wsUrl) {
                 languageClient.start();
                 connection.onClose(() => languageClient.stop());
 
-                // Enregistrez un provider de complétion dès que le client est prêt
                 languageClient.onReady().then(() => {
                     monaco.languages.registerCompletionItemProvider(language, {
                         triggerCharacters: ['.', ':', '<', '"', ' ', '#'],
@@ -76,14 +74,11 @@ function connectToLanguageServer(language, wsUrl) {
                                 }
                             };
 
-                            // Envoyer la requête de complétion au serveur LSP
                             const result = await languageClient.sendRequest('textDocument/completion', params);
-                            // Si le serveur ne renvoie rien, retourner des suggestions vides
                             if (!result || !result.items) {
                                 return { suggestions: [] };
                             }
                             
-                            // Mappez les items renvoyés par le serveur aux suggestions attendues par Monaco
                             const suggestions = result.items.map(item => ({
                                 label: item.label,
                                 kind: monaco.languages.CompletionItemKind[item.kind] || monaco.languages.CompletionItemKind.Text,
@@ -781,7 +776,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 const selectedLanguage = sourceEditor.getModel().getLanguageId(); 
                 const wsUrl = lspServerUrls[selectedLanguage]; 
                 if (wsUrl) {
-                   connectToLanguageServer(selectedLanguage, wsUrl); // Connecter le serveur LSP
+                   connectToLanguageServer(selectedLanguage, wsUrl); 
                    console.log(`LSP connected for the language : ${selectedLanguage}`);
                 } else {
                    console.warn(`No server for : ${selectedLanguage}`);
